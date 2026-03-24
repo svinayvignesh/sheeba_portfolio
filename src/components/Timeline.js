@@ -7,52 +7,54 @@ import styles from "./Timeline.module.css";
 const ROLES = [
   {
     period: "2003–2012",
-    shortPeriod: "03–12",
     title: "Foundations in Tech & Product",
-    role: "Analyst/Developer → HRIS Analyst → Product Analyst",
+    roles: [
+      { role: "Product Analyst", company: "Towers Watson", initial: "TW" },
+      { role: "HRIS Analyst", company: "Family Health Center", initial: "FH" },
+      { role: "Analyst / Developer", company: "CMTES Informatics", initial: "CI" },
+    ],
     description:
-      "Built product specs, SQL reporting frameworks, and a digital rewards module from scratch. Established foundation in data, analytics, and stakeholder management.",
-    companies: "Towers Watson · Family Health · CMTES",
-    tags: ["SQL", "Product", "HR Tech"],
+      "Built product specs, SQL reporting frameworks, and a digital rewards module from scratch. Reduced report generation time 25% and manual HR processes by 30%.",
+    tags: ["SQL", "Product", "HR Tech", "LMS"],
   },
   {
     period: "2012–2016",
-    shortPeriod: "12–16",
     title: "Scaling Enterprise Systems",
-    role: "Senior Business Analyst & Project Manager",
+    roles: [
+      { role: "Sr. Business Analyst & Project Manager", company: "Belk", initial: "B" },
+    ],
     description:
-      "Implemented workforce management, talent management, and loss prevention systems across Belk's enterprise. Automated timecard processing and reduced HR errors by 15%.",
-    companies: "Belk",
+      "Implemented workforce management, talent management, and loss prevention systems across the enterprise. Automated timecard processing and reduced HR errors by 15%.",
     tags: ["Workforce Mgmt", "Integration", "HR"],
   },
   {
     period: "2017–2021",
-    shortPeriod: "17–21",
     title: "Risk, Compliance & Controls",
-    role: "VP – Risk & Process Control Manager",
+    roles: [
+      { role: "VP — Risk & Process Control Manager", company: "US Bank", initial: "USB" },
+    ],
     description:
-      "Managed AML compliance controls enabling branch expansion. Reduced compliance gaps by 40% and AML findings by 50%. Standardized project governance.",
-    companies: "US Bank",
-    tags: ["AML", "KYC", "Compliance"],
+      "Managed AML compliance and process controls enabling branch expansion. Reduced compliance gaps by 40% and AML findings by 50%. Led transformational initiatives.",
+    tags: ["AML", "KYC", "Compliance", "Risk"],
   },
   {
     period: "2021–2022",
-    shortPeriod: "21–22",
     title: "Building from the Ground Up",
-    role: "Director, Business Process Innovation",
+    roles: [
+      { role: "Director, Business Process Innovation", company: "Curi", initial: "C" },
+    ],
     description:
-      "Built the Operations Excellence team and PMO from scratch. Introduced digital payments, reduced call volumes by 30%, and established innovation governance.",
-    companies: "Curi",
-    tags: ["PMO", "Innovation", "CRM"],
+      "Built Operations Excellence team and PMO from scratch. Introduced digital payments, reduced call volumes by 30%, and established innovation governance.",
+    tags: ["PMO", "Innovation", "CRM", "Product"],
   },
   {
     period: "2022–Present",
-    shortPeriod: "22–26",
     title: "Enterprise Transformation at Scale",
-    role: "Director, Business Transformation — Data & Tech",
+    roles: [
+      { role: "Director, Business Transformation", company: "Curi", initial: "C" },
+    ],
     description:
       "Leading digital transformation across three business units. Reduced cycle time by 53%, quarterly close by 67%, and drove AI automation, SaaS integration, and CRM transformation.",
-    companies: "Curi",
     tags: ["AI", "M&A", "Salesforce", "Finance"],
     current: true,
   },
@@ -60,7 +62,7 @@ const ROLES = [
 
 export default function Timeline() {
   const sectionRef = useRef(null);
-  const progressLineRef = useRef(null);
+  const lineRef = useRef(null);
 
   useScrollAnimation(
     (el, gsap, ScrollTrigger) => {
@@ -79,7 +81,7 @@ export default function Timeline() {
 
       // Cards fade up with stagger
       const cards = el.querySelectorAll(`.${styles.card}`);
-      cards.forEach((card, i) => {
+      cards.forEach((card) => {
         gsap.from(card, {
           scrollTrigger: {
             trigger: card,
@@ -93,16 +95,18 @@ export default function Timeline() {
         });
       });
 
-      // Progress line scrub with scroll
-      gsap.to(progressLineRef.current, {
-        scaleY: 1,
-        scrollTrigger: {
-          trigger: el,
-          start: "top top",
-          end: "bottom bottom",
-          scrub: 1,
-        },
-      });
+      // Progress line scrubs full height
+      if (lineRef.current) {
+        gsap.to(lineRef.current, {
+          scaleY: 1,
+          scrollTrigger: {
+            trigger: el,
+            start: "top 60%",
+            end: "bottom 80%",
+            scrub: 1,
+          },
+        });
+      }
     },
     [],
     sectionRef
@@ -116,26 +120,46 @@ export default function Timeline() {
       </div>
 
       <div className={styles.container}>
-        <div className={styles.stickyColumn}>
-          <div className={styles.stickyContent}>
-            <div className={styles.periodDisplay}>
-              {ROLES[ROLES.length - 1].shortPeriod}
-            </div>
-            <div ref={progressLineRef} className={styles.progressLine} />
-          </div>
+        {/* Vertical progress line — runs full height */}
+        <div className={styles.lineTrack}>
+          <div ref={lineRef} className={styles.lineFill} />
         </div>
 
+        {/* Cards */}
         <div className={styles.cardsColumn}>
           {ROLES.map((roleData, i) => (
             <div
               key={i}
               className={`${styles.card} ${roleData.current ? styles.cardCurrent : ""}`}
             >
-              <span className={styles.periodLabel}>{roleData.period}</span>
+              {/* Year badge */}
+              <div className={styles.yearBadge}>
+                <span className={styles.yearDot} />
+                <span className={styles.yearText}>{roleData.period}</span>
+              </div>
+
+              {/* Phase title */}
               <h3 className={styles.cardTitle}>{roleData.title}</h3>
-              <p className={styles.cardRole}>{roleData.role}</p>
+
+              {/* Company/role blocks — prominent */}
+              <div className={styles.rolesBlock}>
+                {roleData.roles.map((r, j) => (
+                  <div key={j} className={styles.roleRow}>
+                    <div className={styles.logoWrapper}>
+                      <span className={styles.logoInitial}>{r.initial}</span>
+                    </div>
+                    <div className={styles.roleInfo}>
+                      <span className={styles.roleName}>{r.role}</span>
+                      <span className={styles.companyName}>{r.company}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Description */}
               <p className={styles.cardDesc}>{roleData.description}</p>
-              <p className={styles.cardCompany}>{roleData.companies}</p>
+
+              {/* Tags */}
               <div className={styles.tagRow}>
                 {roleData.tags.map((tag, j) => (
                   <span key={j} className={styles.tag}>

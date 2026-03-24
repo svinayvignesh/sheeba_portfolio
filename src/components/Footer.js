@@ -90,14 +90,14 @@ export default function Footer() {
         <p className={styles.subtitle}>Ready to drive transformation?</p>
 
         {/* CTA Button */}
-        <a href="mailto:svinayvignesh@gmail.com" className={styles.cta}>
+        <a href="mailto:sheebakishore@yahoo.com" className={styles.cta}>
           Get in Touch
         </a>
 
         {/* Links row */}
         <div className={styles.linksRow}>
-          <a href="mailto:svinayvignesh@gmail.com" className={styles.link}>
-            svinayvignesh@gmail.com
+          <a href="mailto:sheebakishore@yahoo.com" className={styles.link}>
+            sheebakishore@yahoo.com
           </a>
           <span className={styles.divider}>|</span>
           <a
@@ -126,7 +126,7 @@ export default function Footer() {
           </div>
           <div className={styles.educationBlock}>
             <p className={styles.educationText}>
-              SAFe Agilist · PMP · CSPO · Lean Six Sigma · CSM
+              Certified Agile Leader · CSPO · Lean Six Sigma Green Belt · AMLC · AI &amp; Digital Transformation (Cornell)
             </p>
           </div>
         </div>

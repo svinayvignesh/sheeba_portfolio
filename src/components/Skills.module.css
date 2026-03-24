@@ -109,7 +109,46 @@
 }
 
 @media (max-width: 768px) {
+  .marqueeContainer {
+    gap: clamp(1.25rem, 2vw, 1.75rem);
+  }
+
+  .marquee {
+    gap: 1rem;
+  }
+
+  .marqueeContent {
+    gap: 1rem;
+  }
+
   .item {
-    font-size: clamp(0.85rem, 1vw, 0.95rem);
+    font-size: 0.8rem;
+    letter-spacing: 0.01em;
+  }
+
+  .item::after {
+    margin-left: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .marqueeContainer {
+    gap: 1rem;
+  }
+
+  .marquee {
+    gap: 0.75rem;
+  }
+
+  .marqueeContent {
+    gap: 0.75rem;
+  }
+
+  .item {
+    font-size: 0.7rem;
+  }
+
+  .item::after {
+    margin-left: 0.75rem;
   }
 }
