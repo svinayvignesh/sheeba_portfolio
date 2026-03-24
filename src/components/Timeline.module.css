@@ -1,0 +1,219 @@
+.timeline {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: var(--color-bg-primary);
+  overflow: hidden;
+}
+
+.videoBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    linear-gradient(to bottom, rgba(10, 22, 40, 1) 0%, transparent 15%),
+    linear-gradient(to top, rgba(10, 22, 40, 1) 0%, transparent 15%),
+    rgba(10, 22, 40, 0.78);
+  z-index: 1;
+}
+
+.headerRow {
+  position: absolute;
+  top: 2.5rem;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  text-align: center;
+  padding: 0 var(--space-lg);
+}
+
+.heading {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 0.3rem;
+}
+
+.headingSub {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+}
+
+.trackWrapper {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.progressLine {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--color-accent-cyan),
+    var(--color-accent-gold)
+  );
+  transform-origin: left center;
+  z-index: 1;
+  opacity: 0.4;
+}
+
+.track {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+  padding: 0 10vw;
+  will-change: transform;
+}
+
+.card {
+  flex-shrink: 0;
+  width: 380px;
+  background: var(--color-glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-glass-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  position: relative;
+  transition: border-color var(--transition-normal),
+              transform var(--transition-normal);
+}
+
+.card:hover {
+  border-color: rgba(0, 212, 255, 0.2);
+  transform: translateY(-6px);
+}
+
+.cardCurrent {
+  border-color: rgba(201, 168, 76, 0.3);
+  box-shadow: 0 0 40px rgba(201, 168, 76, 0.1);
+}
+
+.cardCurrent .period {
+  color: var(--color-accent-gold);
+}
+
+.period {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-accent-cyan);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: var(--space-sm);
+}
+
+.dot {
+  position: absolute;
+  top: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--color-bg-primary);
+  border: 2px solid var(--color-accent-cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dotInner {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent-cyan);
+}
+
+.cardCurrent .dot {
+  border-color: var(--color-accent-gold);
+}
+
+.cardCurrent .dotInner {
+  background: var(--color-accent-gold);
+}
+
+.cardTitle {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-xs);
+  line-height: 1.3;
+}
+
+.cardRole {
+  font-size: 0.9rem;
+  color: var(--color-accent-gold);
+  margin-bottom: var(--space-sm);
+  font-weight: 500;
+}
+
+.cardDesc {
+  font-size: 0.88rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--space-sm);
+}
+
+.cardCompany {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-sm);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+
+.tagRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.tag {
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 0.25rem 0.6rem;
+  border-radius: 100px;
+  background: rgba(0, 212, 255, 0.1);
+  color: var(--color-accent-cyan);
+  letter-spacing: 0.02em;
+}
+
+.cardCurrent .tag {
+  background: rgba(201, 168, 76, 0.1);
+  color: var(--color-accent-gold);
+}
+
+@media (max-width: 768px) {
+  .track {
+    gap: var(--space-md);
+    padding: 0 5vw;
+  }
+
+  .card {
+    width: 300px;
+    padding: var(--space-md);
+  }
+}

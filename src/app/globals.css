@@ -1,0 +1,250 @@
+/* ===================================================
+   Design System — Sheeba Sukumaran Portfolio
+   =================================================== */
+
+/* --- CSS Custom Properties --- */
+:root {
+  /* Colors */
+  --color-bg-primary: #0A1628;
+  --color-bg-secondary: #111D2E;
+  --color-bg-card: #1B2B44;
+  --color-bg-card-hover: #243752;
+  --color-accent-gold: #C9A84C;
+  --color-accent-gold-light: #E0C872;
+  --color-accent-cyan: #00D4FF;
+  --color-accent-cyan-dim: rgba(0, 212, 255, 0.3);
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #8B9BB4;
+  --color-text-muted: #5A6B82;
+  --color-overlay: rgba(10, 22, 40, 0.6);
+  --color-overlay-heavy: rgba(10, 22, 40, 0.85);
+  --color-glass-bg: rgba(27, 43, 68, 0.4);
+  --color-glass-border: rgba(255, 255, 255, 0.08);
+
+  /* Typography */
+  --font-heading: var(--font-outfit), 'Outfit', sans-serif;
+  --font-body: var(--font-inter), 'Inter', sans-serif;
+  --font-mono: 'Space Grotesk', monospace;
+
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+  --space-2xl: 6rem;
+  --space-3xl: 8rem;
+
+  /* Borders */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+
+  /* Transitions */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --transition-fast: 200ms var(--ease-out-expo);
+  --transition-normal: 400ms var(--ease-out-expo);
+  --transition-slow: 800ms var(--ease-out-expo);
+}
+
+/* --- Reset --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: auto; /* Lenis handles smooth scroll */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Lenis smooth scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+img, video {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* --- Utility Classes --- */
+.glass {
+  background: var(--color-glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-glass-border);
+  border-radius: var(--radius-md);
+}
+
+.glass-strong {
+  background: rgba(27, 43, 68, 0.6);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-md);
+}
+
+/* --- Video Background Utility --- */
+.video-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--color-overlay);
+  z-index: 1;
+}
+
+.video-overlay-heavy {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--color-overlay-heavy);
+  z-index: 1;
+}
+
+/* --- Section Base --- */
+.section-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+/* --- Typography Helpers --- */
+.heading-xl {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.heading-lg {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.heading-md {
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.text-gold {
+  color: var(--color-accent-gold);
+}
+
+.text-cyan {
+  color: var(--color-accent-cyan);
+}
+
+.text-secondary {
+  color: var(--color-text-secondary);
+}
+
+/* --- Scroll indicator --- */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(8px); }
+  60% { transform: translateY(4px); }
+}
+
+/* --- Responsive breakpoints helper (used in modules) --- */
+/* Tablet: 768px, Mobile: 480px */
+
+/* --- Seamless Section Transitions --- */
+/* Gradient fades on section edges so they blend into each other */
+
+/* Top fade: blends incoming section with the section above */
+.section-fade-top::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 100%;
+  height: 20vh;
+  background: linear-gradient(
+    to bottom,
+    var(--color-bg-primary) 0%,
+    transparent 100%
+  );
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Bottom fade: blends current section into the section below */
+.section-fade-bottom::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 20vh;
+  background: linear-gradient(
+    to top,
+    var(--color-bg-primary) 0%,
+    transparent 100%
+  );
+  z-index: 2;
+  pointer-events: none;
+}
+
