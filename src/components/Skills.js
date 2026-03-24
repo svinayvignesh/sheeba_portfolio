@@ -2,13 +2,13 @@
 
 import { useRef } from "react";
 import { useScrollAnimation } from "@/hooks/useGsap";
-import ScrollVideo from "./ScrollVideo";
 import styles from "./Skills.module.css";
 
-const SKILL_GROUPS = [
+const MARQUEE_ROWS = [
   {
-    title: "Strategic Leadership",
-    skills: [
+    direction: "ltr",
+    duration: 25,
+    items: [
       "Digital Transformation",
       "M&A Integration",
       "Innovation Strategy",
@@ -20,8 +20,9 @@ const SKILL_GROUPS = [
     ],
   },
   {
-    title: "Technology & Tools",
-    skills: [
+    direction: "rtl",
+    duration: 32,
+    items: [
       "AI/ML (Co-Pilot)",
       "Salesforce",
       "HubSpot",
@@ -33,8 +34,9 @@ const SKILL_GROUPS = [
     ],
   },
   {
-    title: "Methodologies",
-    skills: [
+    direction: "ltr",
+    duration: 22,
+    items: [
       "Agile Product Delivery",
       "Lean Six Sigma",
       "Scrum",
@@ -44,8 +46,9 @@ const SKILL_GROUPS = [
     ],
   },
   {
-    title: "Compliance & Risk",
-    skills: [
+    direction: "rtl",
+    duration: 28,
+    items: [
       "Anti-Money Laundering",
       "KYC Workflows",
       "Financial Crimes Compliance",
@@ -61,7 +64,7 @@ export default function Skills() {
 
   useScrollAnimation(
     (el, gsap) => {
-      // Heading — simple entrance
+      // Heading entrance
       gsap.from(`.${styles.heading}`, {
         scrollTrigger: { trigger: el, start: "top 80%", once: true },
         opacity: 0,
@@ -69,16 +72,14 @@ export default function Skills() {
         duration: 0.8,
       });
 
-      // Each group card enters
-      const groups = el.querySelectorAll(`.${styles.group}`);
-      groups.forEach((group, i) => {
-        gsap.from(group, {
-          scrollTrigger: { trigger: group, start: "top 90%", once: true },
-          opacity: 0,
-          y: 40,
-          duration: 0.6,
-          delay: i * 0.08,
-        });
+      // Each row fades in with stagger
+      const rows = el.querySelectorAll(`.${styles.row}`);
+      gsap.from(rows, {
+        scrollTrigger: { trigger: el, start: "top 70%", once: true },
+        opacity: 0,
+        y: 30,
+        stagger: 0.1,
+        duration: 0.6,
       });
     },
     [],
@@ -87,26 +88,35 @@ export default function Skills() {
 
   return (
     <section ref={sectionRef} className={styles.skills} id="skills">
-      <ScrollVideo
-        src="/videos/Neural_Network_Visualization_Video_Generation.mp4"
-        triggerRef={sectionRef}
-        className={styles.videoBg}
-      />
-      <div className={styles.overlay} />
-
       <div className={styles.content}>
-        <h2 className={styles.heading}>Skills &amp; Expertise</h2>
+        <h2 className={styles.heading}>EXPERTISE</h2>
 
-        <div className={styles.grid}>
-          {SKILL_GROUPS.map((group, i) => (
-            <div key={i} className={styles.group}>
-              <h3 className={styles.groupTitle}>{group.title}</h3>
-              <div className={styles.tagList}>
-                {group.skills.map((skill, j) => (
-                  <span key={j} className={styles.tag}>
-                    {skill}
-                  </span>
-                ))}
+        <div className={styles.marqueeContainer}>
+          {MARQUEE_ROWS.map((row, rowIdx) => (
+            <div
+              key={rowIdx}
+              className={styles.row}
+              style={{
+                "--duration": `${row.duration}s`,
+                "--direction": row.direction === "ltr" ? "0%" : "-50%",
+                "--direction-end": row.direction === "ltr" ? "-50%" : "0%",
+              }}
+            >
+              <div className={styles.marquee}>
+                <div className={styles.marqueeContent}>
+                  {row.items.map((item, i) => (
+                    <span key={i} className={styles.item}>
+                      {item}
+                    </span>
+                  ))}
+                </div>
+                <div className={styles.marqueeContent} aria-hidden="true">
+                  {row.items.map((item, i) => (
+                    <span key={i} className={styles.item}>
+                      {item}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           ))}

@@ -1,0 +1,17 @@
+.revealText {
+  display: block;
+  font-family: var(--font-heading);
+}
+
+.lineWrapper {
+  display: inline-block;
+  margin-right: 0.25em;
+  width: auto;
+  overflow: hidden;
+  vertical-align: baseline;
+}
+
+.lineContent {
+  display: inline-block;
+  will-change: transform, clip-path;
+}

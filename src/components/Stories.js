@@ -2,7 +2,6 @@
 
 import { useRef } from "react";
 import { useScrollAnimation } from "@/hooks/useGsap";
-import ScrollVideo from "./ScrollVideo";
 import styles from "./Stories.module.css";
 
 const STORIES = [
@@ -70,7 +69,7 @@ export default function Stories() {
 
   useScrollAnimation(
     (el, gsap, ScrollTrigger) => {
-      // Heading
+      // Heading entrance
       gsap.from(`.${styles.heading}`, {
         scrollTrigger: { trigger: el, start: "top 80%", once: true },
         opacity: 0,
@@ -78,18 +77,50 @@ export default function Stories() {
         duration: 0.8,
       });
 
-      // Each story card enters individually
+      // Each story card: scale reveal + content fade
       const storyEls = el.querySelectorAll(`.${styles.story}`);
       storyEls.forEach((story, i) => {
-        gsap.from(story, {
+        gsap.fromTo(
+          story,
+          {
+            scale: 0.95,
+            borderRadius: "12px",
+          },
+          {
+            scrollTrigger: {
+              trigger: story,
+              start: "top 70%",
+              end: "top 30%",
+              scrub: true,
+            },
+            scale: 1,
+            borderRadius: "0px",
+            duration: 1,
+          }
+        );
+
+        // Story number parallax
+        gsap.from(story.querySelector(`.${styles.storyNumber}`), {
           scrollTrigger: {
             trigger: story,
-            start: "top 85%",
+            start: "top 70%",
+            scrub: true,
+          },
+          y: 50,
+          duration: 1,
+        });
+
+        // Content fade in once card enters
+        gsap.from(story.querySelectorAll(`.${styles.storyContent} > *`), {
+          scrollTrigger: {
+            trigger: story,
+            start: "top 65%",
             once: true,
           },
           opacity: 0,
-          y: 60,
-          duration: 0.8,
+          y: 20,
+          stagger: 0.05,
+          duration: 0.6,
           delay: 0.1,
         });
       });
@@ -100,48 +131,45 @@ export default function Stories() {
 
   return (
     <section ref={sectionRef} className={styles.stories} id="stories">
-      <ScrollVideo
-        src="/videos/Modern_Boardroom_Hologram_Video.mp4"
-        triggerRef={sectionRef}
-        className={styles.videoBg}
-      />
-      <div className={styles.overlay} />
-
       <div className={styles.content}>
-        <h2 className={styles.heading}>Transformation Stories</h2>
+        <h2 className={styles.heading}>TRANSFORMATION STORIES</h2>
 
         <div className={styles.storyList}>
           {STORIES.map((story, i) => (
             <article key={story.id} className={styles.story}>
               <div className={styles.storyNumber}>0{i + 1}</div>
 
-              <div className={styles.storyTop}>
-                <h3 className={styles.storyTitle}>{story.title}</h3>
-                <p className={styles.storySubtitle}>{story.subtitle}</p>
-              </div>
+              <div className={styles.storyContent}>
+                <div className={styles.storyLeft}>
+                  <h3 className={styles.storyTitle}>{story.title}</h3>
+                  <p className={styles.storySubtitle}>{story.subtitle}</p>
 
-              <div className={styles.storyGrid}>
-                <div className={styles.storyCol}>
-                  <h4 className={styles.label}>THE CHALLENGE</h4>
-                  <p className={styles.challengeText}>{story.challenge}</p>
+                  <div className={styles.section}>
+                    <h4 className={styles.label}>THE CHALLENGE</h4>
+                    <p className={styles.challengeText}>{story.challenge}</p>
+                  </div>
 
-                  <h4 className={styles.label}>THE APPROACH</h4>
-                  <ul className={styles.approachList}>
-                    {story.approach.map((item, j) => (
-                      <li key={j}>{item}</li>
-                    ))}
-                  </ul>
+                  <div className={styles.section}>
+                    <h4 className={styles.label}>THE APPROACH</h4>
+                    <ul className={styles.approachList}>
+                      {story.approach.map((item, j) => (
+                        <li key={j}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
 
-                <div className={styles.resultCol}>
-                  <h4 className={styles.label}>THE RESULT</h4>
-                  <div className={styles.resultGrid}>
-                    {story.results.map((r, j) => (
-                      <div key={j} className={styles.resultItem}>
-                        <span className={styles.resultMetric}>{r.metric}</span>
-                        <span className={styles.resultLabel}>{r.label}</span>
-                      </div>
-                    ))}
+                <div className={styles.storyRight}>
+                  <div className={styles.section}>
+                    <h4 className={styles.label}>THE RESULT</h4>
+                    <div className={styles.resultGrid}>
+                      {story.results.map((r, j) => (
+                        <div key={j} className={styles.resultItem}>
+                          <span className={styles.resultMetric}>{r.metric}</span>
+                          <span className={styles.resultLabel}>{r.label}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
