@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import styles from "./ThreeBackground.module.css";
 
-export default function ThreeBackground() {
+export default function ThreeBackground({ keywords: keywordsProp }) {
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -250,16 +250,11 @@ export default function ThreeBackground() {
       // ============================================
       // 5. ORBITING KEYWORDS — resume data in space
       // ============================================
-      const keywords = [
-        { text: "TRANSFORMATION", size: 20 },
-        { text: "AI & DIGITAL", size: 18 },
-        { text: "SIX SIGMA", size: 16 },
-        { text: "M&A INTEGRATION", size: 17 },
-        { text: "40% FASTER", size: 22 },
-        { text: "DATA-DRIVEN", size: 18 },
-        { text: "AGILE", size: 19 },
-        { text: "INNOVATION", size: 18 },
-      ];
+      const sizes = [20, 18, 16, 17, 22, 18, 19, 18];
+      const keywords = (keywordsProp || []).map((text, i) => ({
+        text,
+        size: sizes[i % sizes.length],
+      }));
 
       const textSprites = [];
       keywords.forEach((kw, i) => {

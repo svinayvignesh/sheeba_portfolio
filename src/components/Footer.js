@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { useScrollAnimation } from "@/hooks/useGsap";
 import styles from "./Footer.module.css";
 
-export default function Footer() {
+export default function Footer({ data }) {
   const sectionRef = useRef(null);
 
   useScrollAnimation(
@@ -74,34 +74,34 @@ export default function Footer() {
       {/* Top marquee */}
       <div className={styles.marqueeRow}>
         <div className={styles.marquee}>
-          <span>Let&apos;s transform together · </span>
-          <span>Let&apos;s transform together · </span>
-          <span>Let&apos;s transform together · </span>
+          <span>{data.marqueeText} · </span>
+          <span>{data.marqueeText} · </span>
+          <span>{data.marqueeText} · </span>
         </div>
       </div>
 
       <div className={styles.content}>
         {/* Main heading */}
         <div className={styles.headingWrapper}>
-          <h2 className={styles.heading}>LET&apos;S CONNECT</h2>
+          <h2 className={styles.heading}>{data.heading}</h2>
         </div>
 
         {/* Subtitle */}
-        <p className={styles.subtitle}>Ready to drive transformation?</p>
+        <p className={styles.subtitle}>{data.subtitle}</p>
 
         {/* CTA Button */}
-        <a href="mailto:sheebakishore@yahoo.com" className={styles.cta}>
-          Get in Touch
+        <a href={`mailto:${data.email}`} className={styles.cta}>
+          {data.ctaText}
         </a>
 
         {/* Links row */}
         <div className={styles.linksRow}>
-          <a href="mailto:sheebakishore@yahoo.com" className={styles.link}>
-            sheebakishore@yahoo.com
+          <a href={`mailto:${data.email}`} className={styles.link}>
+            {data.email}
           </a>
           <span className={styles.divider}>|</span>
           <a
-            href="https://linkedin.com/in/sheebasukumaran"
+            href={data.linkedin}
             target="_blank"
             rel="noopener noreferrer"
             className={styles.link}
@@ -109,7 +109,7 @@ export default function Footer() {
             LinkedIn
           </a>
           <span className={styles.divider}>|</span>
-          <a href="/resume/Sheeba Sukumaran_Resume Original.docx" download className={styles.link}>
+          <a href={data.resumePath} download className={styles.link}>
             Resume
           </a>
         </div>
@@ -121,18 +121,18 @@ export default function Footer() {
         <div className={styles.education}>
           <div className={styles.educationBlock}>
             <p className={styles.educationText}>
-              M.Sc Computer Science · B.Sc Computer Science
+              {data.education}
             </p>
           </div>
           <div className={styles.educationBlock}>
             <p className={styles.educationText}>
-              Certified Agile Leader · CSPO · Lean Six Sigma Green Belt · AMLC · AI &amp; Digital Transformation (Cornell)
+              {data.certifications}
             </p>
           </div>
         </div>
 
         {/* Copyright */}
-        <p className={styles.copyright}>© 2026 Sheeba Sukumaran</p>
+        <p className={styles.copyright}>{data.copyright}</p>
       </div>
     </footer>
   );

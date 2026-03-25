@@ -4,63 +4,7 @@ import { useRef } from "react";
 import { useScrollAnimation } from "@/hooks/useGsap";
 import styles from "./Timeline.module.css";
 
-const ROLES = [
-  {
-    period: "2003–2012",
-    title: "Foundations in Tech & Product",
-    roles: [
-      { role: "Product Analyst", company: "Towers Watson", initial: "TW" },
-      { role: "HRIS Analyst", company: "Family Health Center", initial: "FH" },
-      { role: "Analyst / Developer", company: "CMTES Informatics", initial: "CI" },
-    ],
-    description:
-      "Built product specs, SQL reporting frameworks, and a digital rewards module from scratch. Reduced report generation time 25% and manual HR processes by 30%.",
-    tags: ["SQL", "Product", "HR Tech", "LMS"],
-  },
-  {
-    period: "2012–2016",
-    title: "Scaling Enterprise Systems",
-    roles: [
-      { role: "Sr. Business Analyst & Project Manager", company: "Belk", initial: "B" },
-    ],
-    description:
-      "Implemented workforce management, talent management, and loss prevention systems across the enterprise. Automated timecard processing and reduced HR errors by 15%.",
-    tags: ["Workforce Mgmt", "Integration", "HR"],
-  },
-  {
-    period: "2017–2021",
-    title: "Risk, Compliance & Controls",
-    roles: [
-      { role: "VP — Risk & Process Control Manager", company: "US Bank", initial: "USB" },
-    ],
-    description:
-      "Managed AML compliance and process controls enabling branch expansion. Reduced compliance gaps by 40% and AML findings by 50%. Led transformational initiatives.",
-    tags: ["AML", "KYC", "Compliance", "Risk"],
-  },
-  {
-    period: "2021–2022",
-    title: "Building from the Ground Up",
-    roles: [
-      { role: "Director, Business Process Innovation", company: "Curi", initial: "C" },
-    ],
-    description:
-      "Built Operations Excellence team and PMO from scratch. Introduced digital payments, reduced call volumes by 30%, and established innovation governance.",
-    tags: ["PMO", "Innovation", "CRM", "Product"],
-  },
-  {
-    period: "2022–Present",
-    title: "Enterprise Transformation at Scale",
-    roles: [
-      { role: "Director, Business Transformation", company: "Curi", initial: "C" },
-    ],
-    description:
-      "Leading digital transformation across three business units. Reduced cycle time by 53%, quarterly close by 67%, and drove AI automation, SaaS integration, and CRM transformation.",
-    tags: ["AI", "M&A", "Salesforce", "Finance"],
-    current: true,
-  },
-];
-
-export default function Timeline() {
+export default function Timeline({ data }) {
   const sectionRef = useRef(null);
   const lineRef = useRef(null);
 
@@ -115,8 +59,8 @@ export default function Timeline() {
   return (
     <section ref={sectionRef} className={styles.timeline} id="timeline">
       <div className={styles.header}>
-        <h2 className={styles.heading}>CAREER JOURNEY</h2>
-        <p className={styles.headingSub}>20+ years of progressive leadership</p>
+        <h2 className={styles.heading}>{data.heading}</h2>
+        <p className={styles.headingSub}>{data.subtitle}</p>
       </div>
 
       <div className={styles.container}>
@@ -127,7 +71,7 @@ export default function Timeline() {
 
         {/* Cards */}
         <div className={styles.cardsColumn}>
-          {ROLES.map((roleData, i) => (
+          {data.roles.map((roleData, i) => (
             <div
               key={i}
               className={`${styles.card} ${roleData.current ? styles.cardCurrent : ""}`}

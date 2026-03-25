@@ -5,12 +5,11 @@ import Image from "next/image";
 import { useScrollAnimation } from "@/hooks/useGsap";
 import styles from "./Hero.module.css";
 
-export default function Hero() {
+export default function Hero({ data }) {
   const sectionRef = useRef(null);
 
   useScrollAnimation(
     (el, gsap, ScrollTrigger) => {
-      // Portrait fades in first
       gsap.from(`.${styles.portrait}`, {
         opacity: 0,
         scale: 1.05,
@@ -19,7 +18,6 @@ export default function Hero() {
         delay: 0.1,
       });
 
-      // Title appears shortly after portrait
       gsap.from(`.${styles.title}`, {
         opacity: 0,
         y: 20,
@@ -36,7 +34,6 @@ export default function Hero() {
         delay: 0.8,
       });
 
-      // Name fades in after a beat — clean, dramatic
       gsap.from(`.${styles.nameFirst}`, {
         opacity: 0,
         duration: 1.6,
@@ -57,7 +54,6 @@ export default function Hero() {
         delay: 2.4,
       });
 
-      // Scroll animations
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: el,
@@ -68,29 +64,10 @@ export default function Hero() {
         },
       });
 
-      tl.to(
-        `.${styles.portrait}`,
-        { y: 100, ease: "none" },
-        0
-      );
-
-      tl.to(
-        `.${styles.centerContent}`,
-        { opacity: 0, y: -50, ease: "none" },
-        0
-      );
-
-      tl.to(
-        `.${styles.nameFirst}`,
-        { y: -80, opacity: 0, ease: "none" },
-        0
-      );
-
-      tl.to(
-        `.${styles.nameLast}`,
-        { y: 80, opacity: 0, ease: "none" },
-        0
-      );
+      tl.to(`.${styles.portrait}`, { y: 100, ease: "none" }, 0);
+      tl.to(`.${styles.centerContent}`, { opacity: 0, y: -50, ease: "none" }, 0);
+      tl.to(`.${styles.nameFirst}`, { y: -80, opacity: 0, ease: "none" }, 0);
+      tl.to(`.${styles.nameLast}`, { y: 80, opacity: 0, ease: "none" }, 0);
     },
     [],
     sectionRef
@@ -99,15 +76,13 @@ export default function Hero() {
   return (
     <section ref={sectionRef} className={styles.hero} id="hero">
       <div className={styles.container}>
-        {/* Name — ABOVE portrait */}
-        <h1 className={styles.nameFirst}>SHEEBA</h1>
+        <h1 className={styles.nameFirst}>{data.firstName}</h1>
 
-        {/* Portrait + center content cluster */}
         <div className={styles.centerBlock}>
           <div className={styles.portraitWrapper}>
             <Image
-              src="/images/Sheeba Sukumaran.jpeg"
-              alt="Sheeba Sukumaran"
+              src={data.image}
+              alt={`${data.firstName} ${data.lastName}`}
               width={600}
               height={800}
               priority
@@ -116,16 +91,12 @@ export default function Hero() {
           </div>
 
           <div className={styles.centerContent}>
-            <p className={styles.title}>Director of Business Transformation</p>
-            <p className={styles.tagline}>
-              Transforming complexity into competitive advantage through digital
-              innovation, AI automation, and strategic leadership.
-            </p>
+            <p className={styles.title}>{data.title}</p>
+            <p className={styles.tagline}>{data.tagline}</p>
           </div>
         </div>
 
-        {/* Name — BELOW portrait */}
-        <h1 className={styles.nameLast}>SUKUMARAN</h1>
+        <h1 className={styles.nameLast}>{data.lastName}</h1>
       </div>
 
       <div className={styles.scrollIndicator}>

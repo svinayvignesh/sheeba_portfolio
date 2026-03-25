@@ -1,0 +1,190 @@
+{
+  "hero": {
+    "firstName": "SHEEBA",
+    "lastName": "SUKUMARAN",
+    "title": "Enterprise Transformation Leader",
+    "tagline": "Transforming complexity into competitive advantage through digital innovation, AI automation, and strategic leadership.",
+    "image": "/images/Sheeba Sukumaran.jpeg"
+  },
+
+  "impact": {
+    "heading": "IMPACT BY THE NUMBERS",
+    "subtitle": "Every transformation starts with a measurable goal — and ends with proof of value.",
+    "metrics": [
+      { "value": 53, "suffix": "%", "label": "Faster Cycle Time", "detail": "3 weeks → 14 days" },
+      { "value": 67, "suffix": "%", "label": "Faster Quarterly Close", "detail": "30 days → 10 days" },
+      { "value": 40, "suffix": "%", "label": "Better Customer Response", "detail": "Digital transformation at Curi" },
+      { "value": 50, "suffix": "%", "label": "Fewer AML Findings", "detail": "Risk controls at US Bank" }
+    ]
+  },
+
+  "timeline": {
+    "heading": "CAREER JOURNEY",
+    "subtitle": "20+ years of progressive leadership",
+    "roles": [
+      {
+        "period": "2022–Present",
+        "title": "Enterprise Transformation at Scale",
+        "roles": [
+          { "role": "Director, Business Transformation", "company": "Curi", "initial": "C" }
+        ],
+        "description": "Leading digital transformation across three business units. Reduced cycle time by 53%, quarterly close by 67%, and drove AI automation, SaaS integration, and CRM transformation.",
+        "tags": ["AI", "M&A", "Salesforce", "Finance"],
+        "current": true
+      },
+      {
+        "period": "2021–2022",
+        "title": "Building from the Ground Up",
+        "roles": [
+          { "role": "Director, Business Process Innovation", "company": "Curi", "initial": "C" }
+        ],
+        "description": "Built Operations Excellence team and PMO from scratch. Introduced digital payments, reduced call volumes by 30%, and established innovation governance.",
+        "tags": ["PMO", "Innovation", "CRM", "Product"],
+        "current": false
+      },
+      {
+        "period": "2017–2021",
+        "title": "Risk, Compliance & Controls",
+        "roles": [
+          { "role": "VP — Risk & Process Control Manager", "company": "US Bank", "initial": "USB" }
+        ],
+        "description": "Managed AML compliance and process controls enabling branch expansion. Reduced compliance gaps by 40% and AML findings by 50%. Led transformational initiatives.",
+        "tags": ["AML", "KYC", "Compliance", "Risk"],
+        "current": false
+      },
+      {
+        "period": "2012–2016",
+        "title": "Enterprise Platform Implementation",
+        "roles": [
+          { "role": "Sr. Business Analyst & Project Manager — HR, Finance & Compliance", "company": "Belk", "initial": "B" },
+          { "role": "Sr. Business Analyst & Project Manager — E-Commerce", "company": "Belk", "initial": "B" }
+        ],
+        "description": "Led enterprise platform implementations across human resources, finance, and compliance functions. Automated timecard processing and reduced HR errors by 15%. Additionally drove e-commerce system integrations, enhancing digital retail operations and cross-functional data accuracy.",
+        "tags": ["HR", "Finance", "Compliance", "E-Commerce", "Integration"],
+        "current": false
+      },
+      {
+        "period": "2003–2012",
+        "title": "Foundations in Tech & Product",
+        "roles": [
+          { "role": "Product Analyst", "company": "Towers Watson", "initial": "TW" },
+          { "role": "HRIS Analyst", "company": "Family Health Center", "initial": "FH" },
+          { "role": "Analyst / Developer", "company": "CMTES Informatics", "initial": "CI" }
+        ],
+        "description": "Built product specs, SQL reporting frameworks, and a digital rewards module from scratch. Reduced report generation time 25% and manual HR processes by 30%.",
+        "tags": ["SQL", "Product", "HR Tech", "LMS"],
+        "current": false
+      }
+    ]
+  },
+
+  "stories": {
+    "heading": "TRANSFORMATION STORIES",
+    "items": [
+      {
+        "title": "From 3 Weeks to 14 Days",
+        "subtitle": "End-to-End Digital Transformation",
+        "challenge": "New business cycle time was 3 weeks. Customer response rates were lagging. Processes were manual and siloed across divisions.",
+        "approach": [
+          "Redesigned end-to-end business processes across insurance, risk management, and wealth management",
+          "Deployed AI (Co-Pilot) for customer interactions and internal workflows",
+          "Integrated SaaS platforms and payment systems, eliminating data silos",
+          "Implemented Salesforce CRM for 360-degree customer view"
+        ],
+        "results": [
+          { "metric": "53%", "label": "Faster cycle time" },
+          { "metric": "+40%", "label": "Customer response rates" },
+          { "metric": "$12.3K", "label": "Annual cost savings" },
+          { "metric": "+40%", "label": "Payment processing" }
+        ]
+      },
+      {
+        "title": "30 Days to 10",
+        "subtitle": "Finance Process Revolution",
+        "challenge": "Quarterly financial close took 30 days. Multiple disconnected systems, manual reconciliation, and lack of automation created bottlenecks.",
+        "approach": [
+          "Consolidated fragmented finance systems into unified platform",
+          "Automated key processes using AI-driven workflow tools",
+          "Streamlined reconciliation and reporting pipelines",
+          "Trained finance teams on new automated workflows"
+        ],
+        "results": [
+          { "metric": "67%", "label": "Faster quarterly close" },
+          { "metric": "30→10", "label": "Days to close" },
+          { "metric": "↓", "label": "Manual touchpoints" },
+          { "metric": "↑", "label": "Audit readiness" }
+        ]
+      },
+      {
+        "title": "Opening Doors, Closing Gaps",
+        "subtitle": "Financial Crimes Compliance at US Bank",
+        "challenge": "AML-related control gaps were preventing US Bank from opening new branches. KYC processes were inconsistent and teller systems had vulnerabilities.",
+        "approach": [
+          "Evaluated teller systems and identified controls breakdowns",
+          "Established comprehensive AML controls and compliance frameworks",
+          "Implemented KYC workflows integrated into bank operations",
+          "Led issue remediation with short-term and long-term solutions"
+        ],
+        "results": [
+          { "metric": "50%", "label": "Fewer AML findings" },
+          { "metric": "50%", "label": "Better efficiency" },
+          { "metric": "✓", "label": "Branches enabled" },
+          { "metric": "🏆", "label": "Prestigious award" }
+        ]
+      }
+    ]
+  },
+
+  "skills": {
+    "heading": "EXPERTISE",
+    "rows": [
+      {
+        "direction": "ltr",
+        "duration": 25,
+        "items": ["Digital Transformation", "M&A Integration", "Innovation Strategy", "Change Management", "Operational Excellence", "Business Process Reengineering", "Stakeholder Management", "Strategic Roadmapping"]
+      },
+      {
+        "direction": "rtl",
+        "duration": 32,
+        "items": ["AI/ML (Co-Pilot)", "Salesforce", "HubSpot", "Agiloft", "SaaS Integration", "Payment Platforms", "CRM / CPQ", "KPI Dashboards"]
+      },
+      {
+        "direction": "ltr",
+        "duration": 22,
+        "items": ["Agile Product Delivery", "Lean Six Sigma", "Scrum", "Portfolio Management", "PMO Governance", "Product Ownership"]
+      },
+      {
+        "direction": "rtl",
+        "duration": 28,
+        "items": ["Anti-Money Laundering", "KYC Workflows", "Financial Crimes Compliance", "Risk Assessment", "Controls Framework", "Issue Remediation"]
+      }
+    ]
+  },
+
+  "footer": {
+    "marqueeText": "Let's transform together",
+    "heading": "LET'S CONNECT",
+    "subtitle": "Ready to drive transformation?",
+    "ctaText": "Get in Touch",
+    "email": "sheebakishore@yahoo.com",
+    "linkedin": "https://linkedin.com/in/sheebasukumaran",
+    "resumePath": "/resume/Sheeba Sukumaran_Resume Original.docx",
+    "education": "M.Sc Computer Science · B.Sc Computer Science",
+    "certifications": "Certified Agile Leader · CSPO · Lean Six Sigma Green Belt · AMLC · AI & Digital Transformation (Cornell)",
+    "copyright": "© 2026 Sheeba Sukumaran"
+  },
+
+  "navbar": {
+    "name": "SHEEBA SUKUMARAN",
+    "links": [
+      { "label": "Impact", "href": "#impact" },
+      { "label": "Journey", "href": "#timeline" },
+      { "label": "Stories", "href": "#stories" },
+      { "label": "Expertise", "href": "#skills" }
+    ]
+  },
+
+  "threeBackground": {
+    "keywords": ["TRANSFORMATION", "AI & DIGITAL", "SIX SIGMA", "M&A INTEGRATION", "40% FASTER", "DATA-DRIVEN", "AGILE", "INNOVATION"]
+  }
+}

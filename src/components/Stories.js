@@ -4,67 +4,7 @@ import { useRef } from "react";
 import { useScrollAnimation } from "@/hooks/useGsap";
 import styles from "./Stories.module.css";
 
-const STORIES = [
-  {
-    id: 1,
-    title: "From 3 Weeks to 14 Days",
-    subtitle: "End-to-End Digital Transformation",
-    challenge:
-      "New business cycle time was 3 weeks. Customer response rates were lagging. Processes were manual and siloed across divisions.",
-    approach: [
-      "Redesigned end-to-end business processes across insurance, risk management, and wealth management",
-      "Deployed AI (Co-Pilot) for customer interactions and internal workflows",
-      "Integrated SaaS platforms and payment systems, eliminating data silos",
-      "Implemented Salesforce CRM for 360-degree customer view",
-    ],
-    results: [
-      { metric: "53%", label: "Faster cycle time" },
-      { metric: "+40%", label: "Customer response rates" },
-      { metric: "$12.3K", label: "Annual cost savings" },
-      { metric: "+40%", label: "Payment processing" },
-    ],
-  },
-  {
-    id: 2,
-    title: "30 Days to 10",
-    subtitle: "Finance Process Revolution",
-    challenge:
-      "Quarterly financial close took 30 days. Multiple disconnected systems, manual reconciliation, and lack of automation created bottlenecks.",
-    approach: [
-      "Consolidated fragmented finance systems into unified platform",
-      "Automated key processes using AI-driven workflow tools",
-      "Streamlined reconciliation and reporting pipelines",
-      "Trained finance teams on new automated workflows",
-    ],
-    results: [
-      { metric: "67%", label: "Faster quarterly close" },
-      { metric: "30→10", label: "Days to close" },
-      { metric: "↓", label: "Manual touchpoints" },
-      { metric: "↑", label: "Audit readiness" },
-    ],
-  },
-  {
-    id: 3,
-    title: "Opening Doors, Closing Gaps",
-    subtitle: "Financial Crimes Compliance at US Bank",
-    challenge:
-      "AML-related control gaps were preventing US Bank from opening new branches. KYC processes were inconsistent and teller systems had vulnerabilities.",
-    approach: [
-      "Evaluated teller systems and identified controls breakdowns",
-      "Established comprehensive AML controls and compliance frameworks",
-      "Implemented KYC workflows integrated into bank operations",
-      "Led issue remediation with short-term and long-term solutions",
-    ],
-    results: [
-      { metric: "50%", label: "Fewer AML findings" },
-      { metric: "50%", label: "Better efficiency" },
-      { metric: "✓", label: "Branches enabled" },
-      { metric: "🏆", label: "Prestigious award" },
-    ],
-  },
-];
-
-export default function Stories() {
+export default function Stories({ data }) {
   const sectionRef = useRef(null);
 
   useScrollAnimation(
@@ -132,11 +72,11 @@ export default function Stories() {
   return (
     <section ref={sectionRef} className={styles.stories} id="stories">
       <div className={styles.content}>
-        <h2 className={styles.heading}>TRANSFORMATION STORIES</h2>
+        <h2 className={styles.heading}>{data.heading}</h2>
 
         <div className={styles.storyList}>
-          {STORIES.map((story, i) => (
-            <article key={story.id} className={styles.story}>
+          {data.items.map((story, i) => (
+            <article key={i} className={styles.story}>
               <div className={styles.storyNumber}>0{i + 1}</div>
 
               <div className={styles.storyContent}>

@@ -4,13 +4,6 @@ import { useRef } from "react";
 import { useScrollAnimation } from "@/hooks/useGsap";
 import styles from "./Impact.module.css";
 
-const METRICS = [
-  { value: 53, suffix: "%", label: "Faster Cycle Time", detail: "3 weeks → 14 days" },
-  { value: 67, suffix: "%", label: "Faster Quarterly Close", detail: "30 days → 10 days" },
-  { value: 40, suffix: "%", label: "Better Customer Response", detail: "Digital transformation at Curi" },
-  { value: 50, suffix: "%", label: "Fewer AML Findings", detail: "Risk controls at US Bank" },
-];
-
 function MetricCard({ value, suffix, label, detail }) {
   const numberRef = useRef(null);
 
@@ -25,7 +18,7 @@ function MetricCard({ value, suffix, label, detail }) {
   );
 }
 
-export default function Impact() {
+export default function Impact({ data }) {
   const sectionRef = useRef(null);
   const headingRef = useRef(null);
   const headingTextRef = useRef(null);
@@ -109,17 +102,16 @@ export default function Impact() {
       <div className={styles.content}>
         <div ref={headingRef} className={styles.headingWrapper}>
           <h2 ref={headingTextRef} className={styles.heading}>
-            IMPACT BY THE NUMBERS
+            {data.heading}
           </h2>
         </div>
 
         <p className={styles.subtitle}>
-          Every transformation starts with a measurable goal — and ends with
-          proof of value.
+          {data.subtitle}
         </p>
 
         <div className={styles.grid}>
-          {METRICS.map((metric, i) => (
+          {data.metrics.map((metric, i) => (
             <MetricCard key={i} {...metric} />
           ))}
         </div>

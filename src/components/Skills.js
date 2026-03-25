@@ -4,62 +4,7 @@ import { useRef } from "react";
 import { useScrollAnimation } from "@/hooks/useGsap";
 import styles from "./Skills.module.css";
 
-const MARQUEE_ROWS = [
-  {
-    direction: "ltr",
-    duration: 25,
-    items: [
-      "Digital Transformation",
-      "M&A Integration",
-      "Innovation Strategy",
-      "Change Management",
-      "Operational Excellence",
-      "Business Process Reengineering",
-      "Stakeholder Management",
-      "Strategic Roadmapping",
-    ],
-  },
-  {
-    direction: "rtl",
-    duration: 32,
-    items: [
-      "AI/ML (Co-Pilot)",
-      "Salesforce",
-      "HubSpot",
-      "Agiloft",
-      "SaaS Integration",
-      "Payment Platforms",
-      "CRM / CPQ",
-      "KPI Dashboards",
-    ],
-  },
-  {
-    direction: "ltr",
-    duration: 22,
-    items: [
-      "Agile Product Delivery",
-      "Lean Six Sigma",
-      "Scrum",
-      "Portfolio Management",
-      "PMO Governance",
-      "Product Ownership",
-    ],
-  },
-  {
-    direction: "rtl",
-    duration: 28,
-    items: [
-      "Anti-Money Laundering",
-      "KYC Workflows",
-      "Financial Crimes Compliance",
-      "Risk Assessment",
-      "Controls Framework",
-      "Issue Remediation",
-    ],
-  },
-];
-
-export default function Skills() {
+export default function Skills({ data }) {
   const sectionRef = useRef(null);
 
   useScrollAnimation(
@@ -89,10 +34,10 @@ export default function Skills() {
   return (
     <section ref={sectionRef} className={styles.skills} id="skills">
       <div className={styles.content}>
-        <h2 className={styles.heading}>EXPERTISE</h2>
+        <h2 className={styles.heading}>{data.heading}</h2>
 
         <div className={styles.marqueeContainer}>
-          {MARQUEE_ROWS.map((row, rowIdx) => (
+          {data.rows.map((row, rowIdx) => (
             <div
               key={rowIdx}
               className={styles.row}

@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import styles from "./Navbar.module.css";
 
-export default function Navbar() {
+export default function Navbar({ data, resumePath }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -16,30 +16,23 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { label: "Impact", href: "#impact" },
-    { label: "Journey", href: "#timeline" },
-    { label: "Stories", href: "#stories" },
-    { label: "Expertise", href: "#skills" },
-  ];
-
   return (
     <>
       <nav className={`${styles.navbar} ${isScrolled ? styles.scrolled : ""}`}>
         <div className={styles.logo}>
-          <a href="#hero">SHEEBA SUKUMARAN</a>
+          <a href="#hero">{data.name}</a>
         </div>
 
         {/* Desktop Navigation */}
         <div className={styles.desktopNav}>
           <ul className={styles.navLinks}>
-            {navLinks.map((link) => (
+            {data.links.map((link) => (
               <li key={link.label}>
                 <a href={link.href}>{link.label}</a>
               </li>
             ))}
           </ul>
-          <a href="/resume/Sheeba Sukumaran_Resume Original.docx" download className={styles.resumeBtn}>Resume</a>
+          <a href={resumePath} download className={styles.resumeBtn}>Resume</a>
         </div>
 
         {/* Mobile Menu Button */}
@@ -64,7 +57,7 @@ export default function Navbar() {
             ✕
           </button>
           <ul className={styles.mobileNavLinks}>
-            {navLinks.map((link) => (
+            {data.links.map((link) => (
               <li key={link.label}>
                 <a href={link.href} onClick={() => setIsMenuOpen(false)}>
                   {link.label}
@@ -72,7 +65,7 @@ export default function Navbar() {
               </li>
             ))}
           </ul>
-          <a href="/resume/Sheeba Sukumaran_Resume Original.docx" download className={styles.mobileResumeBtn}>Resume</a>
+          <a href={resumePath} download className={styles.mobileResumeBtn}>Resume</a>
         </div>
       )}
     </>
