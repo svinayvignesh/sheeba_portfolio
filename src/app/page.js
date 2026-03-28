@@ -11,8 +11,8 @@ import { getPortfolioData } from "@/lib/data";
 
 export const dynamic = "force-dynamic";
 
-export default function Home() {
-  const data = getPortfolioData();
+export default async function Home() {
+  const data = await getPortfolioData();
 
   return (
     <>

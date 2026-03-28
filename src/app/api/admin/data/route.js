@@ -14,7 +14,7 @@ export async function GET() {
     return Response.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const data = getPortfolioData();
+  const data = await getPortfolioData();
   return Response.json(data);
 }
 
@@ -25,7 +25,7 @@ export async function POST(request) {
 
   try {
     const data = await request.json();
-    savePortfolioData(data);
+    await savePortfolioData(data);
     return Response.json({ success: true });
   } catch (err) {
     return Response.json({ error: "Failed to save data" }, { status: 500 });
